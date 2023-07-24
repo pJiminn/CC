@@ -1,2 +1,2 @@
-# CC
+# CPP
 c++ study
