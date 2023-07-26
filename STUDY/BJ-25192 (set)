@@ -1,0 +1,35 @@
+//ENTER는 새로운 사람이 채팅방에 입장했음을 나타낸다.그 외는 채팅을 입력한 유저의 닉네임을 나타낸다.닉네임은 숫자 또는 영문 대소문자로 구성되어 있다.
+//새로운 사람이 입장한 이후 처음 채팅을 입력하는 사람은 반드시 곰곰티콘으로 인사를 한다. 그 외의 기록은 곰곰티콘을 쓰지 않은 평범한 채팅 기록이다.
+//채팅 기록 중 곰곰티콘이 사용된 횟수를 구해보자!
+
+
+// 중복되어 있는 이름은 아예 체크안하기 위해서 set사용
+
+#include<iostream>
+#include<set>
+using namespace std;
+
+int main() {
+	set<string> s; //문자열 형태로 저장하기 위해 <string>사용
+
+	int num;
+	int count = 0;
+	cin >> num;
+	
+	string name;
+	for (int i = 0;i < num;i++) {
+		cin >> name;
+		if (name == "ENTER") {
+			count = count + s.size();
+			s.clear(); //ENTER 나오면 그동안의 size(개수) count에 더한다음 tree 비우기
+		}
+		else{
+			s.insert(name);
+			
+		}
+	}
+	count = count + s.size(); // 마지막 ENTER 이후 추가된 곰곰이 세기
+	cout << count;
+
+	return 0;
+}

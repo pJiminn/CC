@@ -1,0 +1,43 @@
+
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+bool compare(pair<int, int>v1, pair<int, int>v2) {
+	return v1.second > v2.second;
+}
+
+int main() {
+	vector <pair <int, int> > v; 
+
+	int length, num;
+	int n;
+	cin >> length >> num;
+
+		
+	for (int i = 0;i < length;i++) {
+		cin >> n;
+		v.push_back(pair<int, int>(n, 1)); //push_back으로 숫자,1 세트 추가
+	}
+
+	for (int i = v.size() - 1;i >= 0;i--) {
+		for (int j = 0;j < v.size();j++) {
+			if (v[j].first == v[i].first&&j!=i) {
+				v[j].second++;
+				v.erase(v.begin() + i);
+				break;
+			}
+		}
+	}
+
+	stable_sort(v.begin(), v.end(), compare);
+
+	for (int i = 0; i < v.size();i++) {
+		for (int j = 0;j < v[i].second;j++) {
+			cout << v[i].first << " ";
+		}
+	}
+	return 0;
+
+}
